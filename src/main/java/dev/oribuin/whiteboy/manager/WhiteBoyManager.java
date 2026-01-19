@@ -30,7 +30,6 @@ public class WhiteBoyManager {
         this.timerTask = new TimerTask() {
             @Override
             public void run() {
-                System.out.println("Inspiring white boy");
                 checkHour();
             }
         };
@@ -99,6 +98,8 @@ public class WhiteBoyManager {
         
         available.forEach(InspiredServer::inspire);
         this.bot.getDataManager().saveServers(available);
+        
+        System.out.println("* White Boy Up: Inspiring a total of [" + available + "] servers in Timezone [" + selectedZone.toZoneId() + "]");
     }
     
     public File generateInspiration() {

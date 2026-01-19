@@ -106,9 +106,7 @@ public class InspiredServer {
         if (channel == null) return false; // no channel being set means white boy can't inspire
 
         // don't inspire twice within an hour or whatever... white boy
-        boolean result = System.currentTimeMillis() - this.lastInspiration > Duration.ofHours(1).toMillis();
-        if (!result) System.out.println("* Info - Could not inspire because it has already been done within the past hour");
-        return result;
+        return System.currentTimeMillis() - this.lastInspiration > Duration.ofHours(1).toMillis();
     }
 
     /**
