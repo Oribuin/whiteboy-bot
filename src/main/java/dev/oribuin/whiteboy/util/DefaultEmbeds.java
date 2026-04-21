@@ -12,5 +12,5 @@ public final class DefaultEmbeds {
                 .setAuthor("\uD83D\uDC94 Error Occurred")
                 .setDescription("[**" + reason + "**] " + message);
     }
-    
+
 }

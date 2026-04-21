@@ -5,7 +5,7 @@ import org.incendo.cloud.caption.CaptionVariable;
 import org.incendo.cloud.caption.StandardCaptionKeys;
 import org.incendo.cloud.context.CommandContext;
 import org.incendo.cloud.context.CommandInput;
-import org.incendo.cloud.discord.jda5.JDAInteraction;
+import org.incendo.cloud.discord.jda6.JDAInteraction;
 import org.incendo.cloud.exception.parsing.ParserException;
 import org.incendo.cloud.parser.ArgumentParseResult;
 import org.incendo.cloud.parser.ArgumentParser;
@@ -49,7 +49,7 @@ public class TimezoneArgumentHandler implements ArgumentParser<JDAInteraction, T
             System.out.println("* Error: Could not find TimeZone because input was not provided");
             return ArgumentParseResult.failure(new TimeZoneParserException(input, commandContext));
         }
-        
+
         TimeZone timeZone = TimeZone.getTimeZone(ZoneId.of(input));
         if (timeZone == null) {
             System.out.println("* Error: Could not find TimeZone by name: " + input);

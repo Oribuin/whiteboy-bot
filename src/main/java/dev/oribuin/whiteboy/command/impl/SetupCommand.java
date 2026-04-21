@@ -15,18 +15,17 @@ import org.incendo.cloud.annotations.Argument;
 import org.incendo.cloud.annotations.Command;
 import org.incendo.cloud.annotations.suggestion.Suggestions;
 import org.incendo.cloud.context.CommandContext;
-import org.incendo.cloud.discord.jda5.JDAInteraction;
-import org.incendo.cloud.discord.jda5.annotation.ReplySetting;
+import org.incendo.cloud.discord.jda6.JDAInteraction;
+import org.incendo.cloud.discord.jda6.annotation.ReplySetting;
 
 import java.awt.*;
-import java.time.ZoneId;
 import java.util.List;
 import java.util.TimeZone;
 
 public class SetupCommand implements BotCommand {
 
     @Command("setupwhiteboy channel <channel>")
-    @ReplySetting(defer = true)
+    @ReplySetting(defer = true, ephemeral = true)
     public void setupChannel(CommandContext<JDAInteraction> context, Channel channel) {
         JDAInteraction sender = context.sender();
         InteractionHook hook = sender.interactionEvent().getHook();
@@ -74,7 +73,7 @@ public class SetupCommand implements BotCommand {
     @Command("setupwhiteboy timezone <timezone>")
     @ReplySetting(defer = true)
     public void setupZone(
-            CommandContext<JDAInteraction> context, 
+            CommandContext<JDAInteraction> context,
             @Argument(value = "timezone", suggestions = "timezones") String timezone
     ) {
         JDAInteraction sender = context.sender();
@@ -108,7 +107,7 @@ public class SetupCommand implements BotCommand {
             ).setEphemeral(true).queue();
             return;
         }
-        
+
         DataManager dataManager = WhiteBoyBot.getInstance().getDataManager();
         InspiredServer server = dataManager.getServer(guild);
         server.setTimeZone(timeZone);

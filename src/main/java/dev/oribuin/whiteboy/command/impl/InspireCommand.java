@@ -9,13 +9,11 @@ import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.interactions.InteractionHook;
 import org.incendo.cloud.annotations.Command;
-import org.incendo.cloud.annotations.suggestion.Suggestions;
 import org.incendo.cloud.context.CommandContext;
-import org.incendo.cloud.discord.jda5.JDAInteraction;
-import org.incendo.cloud.discord.jda5.annotation.ReplySetting;
+import org.incendo.cloud.discord.jda6.JDAInteraction;
+import org.incendo.cloud.discord.jda6.annotation.ReplySetting;
 
 import java.awt.*;
-import java.util.List;
 
 public class InspireCommand implements BotCommand {
 

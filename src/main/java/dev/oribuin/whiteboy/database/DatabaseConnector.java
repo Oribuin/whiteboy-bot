@@ -20,7 +20,7 @@ public interface DatabaseConnector {
     /**
      * Executes a callback with a Connection passed and automatically closes it when finished
      *
-     * @param callback The callback to execute once the connection is retrieved
+     * @param callback       The callback to execute once the connection is retrieved
      * @param useTransaction If true, the query will be executed within a transaction. Not all connectors will use this.
      */
     void connect(ConnectionCallback callback, boolean useTransaction);

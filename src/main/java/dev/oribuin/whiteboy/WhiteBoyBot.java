@@ -13,8 +13,8 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.utils.MemberCachePolicy;
 import net.dv8tion.jda.api.utils.cache.CacheFlag;
-import org.incendo.cloud.discord.jda5.JDA5CommandManager;
-import org.incendo.cloud.discord.jda5.JDAInteraction;
+import org.incendo.cloud.discord.jda6.JDA6CommandManager;
+import org.incendo.cloud.discord.jda6.JDAInteraction;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
@@ -62,7 +62,7 @@ public class WhiteBoyBot extends ListenerAdapter {
         this.commandManager = new CommandManager(this);
         this.whiteBoyManager = new WhiteBoyManager(this);
 
-        JDABuilder builder = JDABuilder.createDefault(token, List.of(GatewayIntent.values()));
+        JDABuilder builder = JDABuilder.create(token, List.of(GatewayIntent.values()));
         builder.addEventListeners(this,
                         new BotListeners(this),
                         this.commandManager.getBuilder().createListener()
@@ -77,13 +77,13 @@ public class WhiteBoyBot extends ListenerAdapter {
 
     @Override
     public void onReady(@NotNull ReadyEvent event) {
-        JDA5CommandManager<JDAInteraction> manager = this.commandManager.getBuilder();
+        JDA6CommandManager<JDAInteraction> manager = this.commandManager.getBuilder();
         manager.registerGlobalCommands(this.application);
     }
 
     @Override
     public void onGuildReady(@NotNull GuildReadyEvent event) {
-        JDA5CommandManager<JDAInteraction> manager = this.commandManager.getBuilder();
+        JDA6CommandManager<JDAInteraction> manager = this.commandManager.getBuilder();
         manager.registerGuildCommands(event.getGuild());
     }
 

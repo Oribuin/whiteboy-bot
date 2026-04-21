@@ -6,6 +6,7 @@ import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.MessageEmbed;
 import net.dv8tion.jda.api.entities.Role;
 import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
+import net.dv8tion.jda.api.entities.emoji.Emoji;
 import net.dv8tion.jda.api.requests.restaction.MessageCreateAction;
 import net.dv8tion.jda.api.utils.FileUpload;
 
@@ -82,7 +83,7 @@ public class InspiredServer {
                 if (serverRole != null) action.addContent(serverRole.getAsMention());
             }
 
-            action.queue();
+            action.queue(message -> message.addReaction(Emoji.fromUnicode("🐎")).queue());
         } catch (IOException ex) {
             System.out.println("* Server Error [" + guild.getName() + "]: " + ex.getMessage());
             MessageEmbed embed = new EmbedBuilder()
@@ -94,7 +95,7 @@ public class InspiredServer {
             textChannel.sendMessageEmbeds(embed).queue();
         }
 
-        WhiteBoyBot.getInstance().getDataManager().update(this);
+        WhiteBoyBot.getInstance().getDataManager().updateServer(this);
     }
 
     /**

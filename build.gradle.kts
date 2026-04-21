@@ -27,10 +27,10 @@ repositories {
 }
 
 dependencies {
-    api("net.dv8tion:JDA:5.6.1")
+    api("net.dv8tion:JDA:6.4.1")
     api("org.incendo:cloud-core:2.0.0")
     api("org.incendo:cloud-annotations:2.0.0")
-    api("org.incendo:cloud-jda5:1.0.0-beta.3")
+    api("org.incendo:cloud-jda6:1.0.0-beta.4")
 
     // Utility
     api("org.apache.commons:commons-lang3:3.12.0")

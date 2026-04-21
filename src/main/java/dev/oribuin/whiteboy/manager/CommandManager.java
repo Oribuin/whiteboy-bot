@@ -4,10 +4,11 @@ import dev.oribuin.whiteboy.WhiteBoyBot;
 import dev.oribuin.whiteboy.command.argument.TimezoneArgumentHandler;
 import dev.oribuin.whiteboy.command.impl.InspireCommand;
 import dev.oribuin.whiteboy.command.impl.SetupCommand;
+import dev.oribuin.whiteboy.command.impl.SubmissionCommand;
 import org.incendo.cloud.annotations.AnnotationParser;
-import org.incendo.cloud.discord.jda5.JDA5CommandManager;
-import org.incendo.cloud.discord.jda5.JDAInteraction;
-import org.incendo.cloud.discord.jda5.annotation.ReplySettingBuilderModifier;
+import org.incendo.cloud.discord.jda6.JDA6CommandManager;
+import org.incendo.cloud.discord.jda6.JDAInteraction;
+import org.incendo.cloud.discord.jda6.annotation.ReplySettingBuilderModifier;
 import org.incendo.cloud.discord.slash.DiscordSetting;
 import org.incendo.cloud.discord.slash.annotation.CommandScopeBuilderModifier;
 import org.incendo.cloud.execution.ExecutionCoordinator;
@@ -19,7 +20,7 @@ import java.util.TimeZone;
 public class CommandManager {
 
     private final WhiteBoyBot bot;
-    private final JDA5CommandManager<JDAInteraction> manager = new JDA5CommandManager<>(
+    private final JDA6CommandManager<JDAInteraction> manager = new JDA6CommandManager<>(
             ExecutionCoordinator.simpleCoordinator(),
             JDAInteraction.InteractionMapper.identity()
     );
@@ -44,19 +45,19 @@ public class CommandManager {
         this.manager.exceptionController().registerHandler(Exception.class, x -> {
             System.out.println(" * Exception Occurred: " + x.exception().getMessage());
         });
-        
+
 //        this.manager.discordSettings().set(DiscordSetting.AUTO_REGISTER_SLASH_COMMANDS, true);
 
         // Parser Registry
         this.manager.parserRegistry().registerParser(
                 ParserDescriptor.of(new TimezoneArgumentHandler(), TimeZone.class)
         );
-        
+
         // Register The Commands
-        this.parser.parse(new SetupCommand(), new InspireCommand());
+        this.parser.parse(new SetupCommand(), new InspireCommand(), new SubmissionCommand());
     }
-    
-    public JDA5CommandManager<JDAInteraction> getBuilder() {
+
+    public JDA6CommandManager<JDAInteraction> getBuilder() {
         return manager;
     }
 

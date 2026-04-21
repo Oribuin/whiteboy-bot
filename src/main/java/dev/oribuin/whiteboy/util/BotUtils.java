@@ -8,7 +8,6 @@ public final class BotUtils {
      * @param enumClass The enum class
      * @param name      The name of the enum
      * @param <T>       The enum name
-     *
      * @return The enum
      */
     public static <T extends Enum<T>> T getEnum(Class<T> enumClass, String name, T def) {
@@ -22,5 +21,5 @@ public final class BotUtils {
 
         return def;
     }
-    
+
 }
