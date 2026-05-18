@@ -4,11 +4,13 @@ import dev.oribuin.whiteboy.WhiteBoyBot;
 import dev.oribuin.whiteboy.command.BotCommand;
 import dev.oribuin.whiteboy.manager.DataManager;
 import dev.oribuin.whiteboy.model.InspiredServer;
+import dev.oribuin.whiteboy.model.ServerIds;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.interactions.InteractionHook;
 import org.incendo.cloud.annotations.Command;
+import org.incendo.cloud.annotations.Permission;
 import org.incendo.cloud.context.CommandContext;
 import org.incendo.cloud.discord.jda6.JDAInteraction;
 import org.incendo.cloud.discord.jda6.annotation.ReplySetting;
@@ -18,7 +20,7 @@ import java.awt.*;
 public class InspireCommand implements BotCommand {
 
     @Command("inspire")
-    @ReplySetting(defer = true)
+    @ReplySetting(defer = true, ephemeral = true)
     public void inspire(CommandContext<JDAInteraction> context) {
         JDAInteraction sender = context.sender();
         InteractionHook hook = sender.interactionEvent().getHook();
@@ -30,7 +32,7 @@ public class InspireCommand implements BotCommand {
         if (member == null) return;
 
         // only server owner can run command because im lazy
-        if (!member.isOwner()) {
+        if (!member.isOwner() && member.getIdLong() != ServerIds.ORIBUIN_ID) {
             hook.sendMessageEmbeds(new EmbedBuilder()
                     .setColor(Color.decode("#94bc80"))
                     .setAuthor("white boy down...")

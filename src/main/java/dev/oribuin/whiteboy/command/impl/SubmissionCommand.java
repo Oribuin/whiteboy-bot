@@ -32,7 +32,7 @@ public class SubmissionCommand implements BotCommand {
     private static final Random RANDOM = new Random();
 
     @Command("whitebot submit <attachment>")
-    @ReplySetting(defer = true)
+    @ReplySetting(defer = true, ephemeral = true)
     public void inspire(CommandContext<JDAInteraction> context, Message.Attachment attachment) {
         JDAInteraction sender = context.sender();
         InteractionHook hook = sender.interactionEvent().getHook();
